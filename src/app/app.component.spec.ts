@@ -16,18 +16,12 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'test-pokemon-api'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('test-pokemon-api');
-  });
-
-  it('should render title', () => {
+  it('should render header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.pokedex')?.textContent).toContain(
-      'Hello world!'
-    );
+    expect(
+      compiled.querySelector('.app__header__title')?.textContent
+    ).toContain('Pokedex');
   });
 });

@@ -1,0 +1,20 @@
+<div class="pokedex__container">
+  <div
+    *ngIf="error$ | async as error"
+    class="pokedex__container__item pokedex__container--error">
+    An error occured, we cannot display pokemons right now. Please try again
+    later. Details: {{ error }}
+  </div>
+
+  <div class="pokedex__container__items">
+    <pkm-pokemon-tile
+      *ngFor="let pokemon of pokemons$ | async"
+      [pokemon]="pokemon" />
+  </div>
+
+  <div
+    *ngIf="isLoading$ | async"
+    class="pokedex__container__item pokedex__container--loading">
+    Loading pokemons, please wait...
+  </div>
+</div>
