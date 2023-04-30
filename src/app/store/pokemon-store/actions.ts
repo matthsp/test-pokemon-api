@@ -7,10 +7,7 @@ export enum ActionTypes {
   REQUEST_SUCCESS = 'Pokemon request success',
 }
 
-export const loadRequest = createAction(
-  ActionTypes.REQUEST_LOADING,
-  props<{ page: number }>()
-);
+export const loadRequest = createAction(ActionTypes.REQUEST_LOADING);
 
 export const failRequest = createAction(
   ActionTypes.REQUEST_FAILURE,

@@ -17,4 +17,11 @@
     class="pokedex__container__item pokedex__container--loading">
     Loading pokemons, please wait...
   </div>
+
+  <button
+    *ngIf="(pokemons$ | async) && (isLoading$ | async) === false"
+    class="pokedex__container__more-button"
+    (click)="loadMore()">
+    Load more Pokémon
+  </button>
 </div>
