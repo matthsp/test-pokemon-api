@@ -1,8 +1,24 @@
 .pokedex
 
-  &__container__items
-    margin: 1.5rem 0
-    display: flex
-    flex-wrap: wrap
-    flex-direction: row
-    justify-content: center
+  &__container
+    &__items
+      margin: 1.5rem 0
+      display: flex
+      flex-wrap: wrap
+      flex-direction: row
+      justify-content: center
+
+    &__more-button
+      cursor: pointer
+      display: block
+      margin: auto
+      width: 16rem
+      height: 3.5rem
+      font-size: 1.125rem
+      color: white
+      background-color: #30a7d7
+      &:hover
+        background-color: #1b82b1
+      border: 0
+      border-radius: 5px
+

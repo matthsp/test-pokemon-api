@@ -3,17 +3,32 @@ import { PokemonState } from './pokemonState';
 
 const selectPokemonFeature = createFeatureSelector<PokemonState>('pokemons');
 
-export const selectPokemons = createSelector(
+const selectState = createSelector(
+  selectPokemonFeature,
+  (state: PokemonState) => ({
+    index: state.lastLoadedPageIndex,
+    isLoading: state.isLoading,
+  })
+);
+
+const selectPokemons = createSelector(
   selectPokemonFeature,
   (state: PokemonState) => state.items
 );
 
-export const selectLoadingState = createSelector(
+const selectLoadingState = createSelector(
   selectPokemonFeature,
   (state: PokemonState) => state.isLoading
 );
 
-export const selectError = createSelector(
+const selectError = createSelector(
   selectPokemonFeature,
   (state: PokemonState) => state.error
 );
+
+export const fromPokemon = {
+  selectError,
+  selectLoadingState,
+  selectPokemons,
+  selectState,
+};
