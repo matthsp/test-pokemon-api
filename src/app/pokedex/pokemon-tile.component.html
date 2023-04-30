@@ -1,0 +1,14 @@
+<div class="pokemon">
+  <img
+    src="{{ pokemon.sprites.front_default }}"
+    alt=""
+    class="pokemon__sprite" />
+  <p class="pokemon__number">{{ pokemon.id | pokemonNumber }}</p>
+
+  <h2 class="pokemon__name">{{ pokemon.name }}</h2>
+  <ul class="pokemon__types">
+    <li class="pokemon__types__type" *ngFor="let t of pokemon.types">
+      {{ t.type.name }}
+    </li>
+  </ul>
+</div>
