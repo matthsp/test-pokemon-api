@@ -1,7 +1,7 @@
 <div class="pokedex__container">
   <div
     *ngIf="error$ | async as error"
-    class="pokedex__container__item pokedex__container--error">
+    class="pokedex__container__item pokemon-state--error">
     An error occured, we cannot display pokemons right now. Please try again
     later. Details: {{ error }}
   </div>
@@ -12,7 +12,7 @@
       [pokemon]="pokemon" />
   </div>
 
-  <div *ngIf="isLoading$ | async" class="pokedex__container--loading">
+  <div *ngIf="isLoading$ | async" class="pokemon-state--loading">
     Loading pokemons, please wait...
   </div>
 

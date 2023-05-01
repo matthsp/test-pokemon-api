@@ -12,11 +12,12 @@ import { getEvolution, getFlavorText } from '../utils/pokemon-detail.utils';
   selector: 'pkm-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
   styleUrls: [
+    '../utils/loading-and-error.sass',
     '../utils/pokemon-types-colors.sass',
     './pokemon-detail.component.sass',
   ],
 })
-export class PokemondDetailComponent {
+export class PokemonDetailComponent {
   detail$: Observable<PokemonDetail | null>;
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;

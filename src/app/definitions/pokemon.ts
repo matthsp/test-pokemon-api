@@ -42,7 +42,6 @@ export interface Pokemon {
   height: number;
   weight: number;
   sprites: {
-    front_default: string;
     other: {
       'official-artwork': { front_default: string };
     };
