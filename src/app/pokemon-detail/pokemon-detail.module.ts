@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokemondDetailComponent } from './pokemon-detail.component';
+import { PokemonDetailComponent } from './pokemon-detail.component';
 import { PokedexModule } from '../pokedex/pokedex.module';
 import { RouterLink } from '@angular/router';
 
 @NgModule({
-  declarations: [PokemondDetailComponent],
+  declarations: [PokemonDetailComponent],
   imports: [CommonModule, PokedexModule, RouterLink],
 })
 export class PokemonDetailModule {}

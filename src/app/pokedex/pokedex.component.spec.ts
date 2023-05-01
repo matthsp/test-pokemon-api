@@ -45,7 +45,7 @@ describe('PokedexComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(
-      compiled.querySelector('.pokedex__container--loading')?.textContent
+      compiled.querySelector('.pokemon-state--loading')?.textContent
     ).toContain('Loading pokemons, please wait...');
   });
 
@@ -59,10 +59,8 @@ describe('PokedexComponent', () => {
 
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const loadingContent = compiled.querySelector(
-      '.pokedex__container--loading'
-    );
-    const errorContent = compiled.querySelector('.pokedex__container--error');
+    const loadingContent = compiled.querySelector('.pokemon-state--loading');
+    const errorContent = compiled.querySelector('.pokemon-state--error');
 
     expect(loadingContent).toBeNull();
     expect(errorContent?.textContent).toContain(
@@ -80,10 +78,8 @@ describe('PokedexComponent', () => {
 
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const loadingContent = compiled.querySelector(
-      '.pokedex__container--loading'
-    );
-    const errorContent = compiled.querySelector('.pokedex__container--error');
+    const loadingContent = compiled.querySelector('.pokemon-state--loading');
+    const errorContent = compiled.querySelector('.pokemon-state--error');
     const listContent = compiled.querySelector('.pokedex__container__items');
 
     expect(loadingContent).toBeNull();

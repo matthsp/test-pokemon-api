@@ -9,7 +9,7 @@ import { fromPokemon } from '../store/pokemon-store/selector';
 @Component({
   selector: 'pkm-pokedex',
   templateUrl: './pokedex.component.html',
-  styleUrls: ['./pokedex.component.sass'],
+  styleUrls: ['../utils/loading-and-error.sass', './pokedex.component.sass'],
 })
 export class PokedexComponent implements OnInit {
   pokemons$: Observable<Pokemon[]>;

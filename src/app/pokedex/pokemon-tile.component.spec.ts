@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokemonTileComponent } from './pokemon-tile.component';
 import { PokemonNumberPipe } from './pipes/pokemon-number.pipe';
+import { Pokemon } from '../definitions/pokemon';
+
 describe('PokemonTileComponent', () => {
   let component: PokemonTileComponent;
   let fixture: ComponentFixture<PokemonTileComponent>;
@@ -20,8 +22,8 @@ describe('PokemonTileComponent', () => {
         { type: { name: 'flying' }, slot: 1 },
         { type: { name: 'dragon' }, slot: 2 },
       ],
-      sprites: { front_default: 'img.url' },
-    };
+      sprites: { other: { 'official-artwork': { front_default: 'img.url' } } },
+    } as Pokemon;
     fixture.detectChanges();
   });
 

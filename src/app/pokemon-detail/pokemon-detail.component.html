@@ -1,10 +1,18 @@
-<div *ngIf="isLoading$ | async" class="pokemon-detail--loading">
+<div *ngIf="(isLoading$ | async) === true" class="pokemon-state--loading">
   Please wait, we are loading data for this pokemon
+</div>
+
+<div *ngIf="(error$ | async) !== null" class="pokemon-state--error">
+  An error occured while fetching data: {{ error$ | async }}
 </div>
 
 <div
   class="pokemon-detail"
-  *ngIf="(isLoading$ | async) === false && (detail$ | async) as detail">
+  *ngIf="
+    (isLoading$ | async) === false &&
+    (error$ | async) === null &&
+    (detail$ | async) as detail
+  ">
   <header class="pokemon-detail__header">
     <span class="pokemon-detail__header__title">{{ detail.name }}</span>
     <span class="pokemon-detail__header__subtitle">{{
@@ -42,9 +50,13 @@
         <div
           *ngIf="evolutions.length > 0"
           class="pokemon-detail__container__misc__evolutions">
-          <h3>Evolutions</h3>
+          <h3 class="pokemon-detail__container__misc__evolutions__title">
+            Evolutions
+          </h3>
           <div *ngFor="let evolution of evolutions">
-            <a [routerLink]="['/pokedex', evolution]">
+            <a
+              [routerLink]="['/pokedex', evolution]"
+              class="pokemon-detail__container__misc__evolutions__link">
               {{ evolution }}
             </a>
           </div>
