@@ -5,7 +5,13 @@ import { catchError, exhaustMap, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { PokemonService } from '../../services/pokemon.service';
-import { ActionTypes, failRequest, successRequest } from './actions';
+import {
+  ActionTypes,
+  failRequest,
+  loadDetailRequest,
+  successDetailRequest,
+  successRequest,
+} from './actions';
 import { fromPokemon } from './selector';
 
 @Injectable()
@@ -29,6 +35,20 @@ export class PokemonEffects {
               of(failRequest({ error: error.message }))
             )
           )
+      )
+    );
+  });
+
+  loadDetailPokemon = createEffect(() => {
+    return this.actions.pipe(
+      ofType(loadDetailRequest),
+      exhaustMap(({ pokemonName }) =>
+        this.pokemonService.getPokemonDetails(pokemonName).pipe(
+          map(response => successDetailRequest({ pokemon: response })),
+          catchError((error: { message: string }) =>
+            of(failRequest({ error: error.message }))
+          )
+        )
       )
     );
   });

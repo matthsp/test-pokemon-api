@@ -12,15 +12,13 @@
       [pokemon]="pokemon" />
   </div>
 
-  <div
-    *ngIf="isLoading$ | async"
-    class="pokedex__container__item pokedex__container--loading">
+  <div *ngIf="isLoading$ | async" class="pokedex__container--loading">
     Loading pokemons, please wait...
   </div>
 
   <button
     *ngIf="(pokemons$ | async) && (isLoading$ | async) === false"
-    class="pokedex__container__more-button"
+    class="button pokedex__container__more-button"
     (click)="loadMore()">
     Load more Pokémon
   </button>

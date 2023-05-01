@@ -1,5 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { failRequest, loadRequest, successRequest } from './actions';
+import {
+  failRequest,
+  loadDetailRequest,
+  loadRequest,
+  successDetailRequest,
+  successRequest,
+} from './actions';
 import { initialPokemonState, PokemonState } from './pokemonState';
 
 export const pokemonReducer = createReducer(
@@ -17,6 +23,18 @@ export const pokemonReducer = createReducer(
       isLoading: false,
       lastLoadedPageIndex:
         state.lastLoadedPageIndex !== null ? state.lastLoadedPageIndex + 1 : 0,
+    })
+  ),
+  on(
+    loadDetailRequest,
+    (state): PokemonState => ({ ...state, isLoading: true })
+  ),
+  on(
+    successDetailRequest,
+    (state, { pokemon }): PokemonState => ({
+      ...state,
+      detail: pokemon,
+      isLoading: false,
     })
   )
 );
