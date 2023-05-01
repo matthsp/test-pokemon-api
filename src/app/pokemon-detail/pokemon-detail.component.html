@@ -1,0 +1,59 @@
+<div *ngIf="isLoading$ | async" class="pokemon-detail--loading">
+  Please wait, we are loading data for this pokemon
+</div>
+
+<div
+  class="pokemon-detail"
+  *ngIf="(isLoading$ | async) === false && (detail$ | async) as detail">
+  <header class="pokemon-detail__header">
+    <span class="pokemon-detail__header__title">{{ detail.name }}</span>
+    <span class="pokemon-detail__header__subtitle">{{
+      detail.id | pokemonNumber
+    }}</span>
+  </header>
+
+  <div class="pokemon-detail__container">
+    <img
+      class="pokemon-detail__container__sprite"
+      [src]="detail.sprites.other['official-artwork'].front_default"
+      alt="{{ detail.name }}'s official artwork" />
+
+    <section class="pokemon-detail__container__misc">
+      <h3 class="pokemon-detail__container__misc__title">Trivia</h3>
+      <p class="pokemon-detail__container__misc__description">
+        {{ getFlavorText(detail, 'en').replace('\f', '') }}
+      </p>
+      <ul class="pokemon-detail__container__misc__characteristics">
+        <li>Height: {{ detail.height / 10 }}m</li>
+        <li>Weight: {{ detail.weight / 10 }}kg</li>
+      </ul>
+      <h3 class="pokemon-detail__container__misc__title">Types</h3>
+      <div class="pokemon-detail__container__misc__types">
+        <div
+          *ngFor="let type of detail.types"
+          class="pokemon__type__{{
+            type.type.name
+          }} pokemon-detail__container__misc__types__type">
+          {{ type.type.name }}
+        </div>
+      </div>
+
+      <ng-container *ngIf="getEvolution(detail) as evolutions">
+        <div
+          *ngIf="evolutions.length > 0"
+          class="pokemon-detail__container__misc__evolutions">
+          <h3>Evolutions</h3>
+          <div *ngFor="let evolution of evolutions">
+            <a [routerLink]="['/pokedex', evolution]">
+              {{ evolution }}
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </section>
+  </div>
+
+  <button class="button pokemon-detail__back-button" (click)="goBack()">
+    Go back
+  </button>
+</div>

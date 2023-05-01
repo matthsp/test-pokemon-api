@@ -4,7 +4,12 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { Pokemon, PokemonLink } from '../definitions/pokemon';
+import {
+  EvolutionChain,
+  Pokemon,
+  PokemonLink,
+  PokemonSpecies,
+} from '../definitions/pokemon';
 import { PokemonService } from './pokemon.service';
 
 describe('PokemonService', () => {
@@ -53,6 +58,50 @@ describe('PokemonService', () => {
       const thirdRequest = controller.expectOne('url-2');
       // Answer the request so the Observable emits a value.
       thirdRequest.flush({ name: 'ivy' } as Pokemon);
+    });
+  });
+
+  describe('getPokemonDetails', () => {
+    it('should return the aggregated values from the 3 api calls', () => {
+      service.getPokemonDetails('missingNo').subscribe(value => {
+        expect(value).toStrictEqual({
+          name: 'missingNo42',
+          species: {
+            id: 12,
+            name: 'missingNo',
+            url: 'url-missing',
+            evolution_chain: {
+              id: 15,
+              chain: { species: { name: 'missingNo' } },
+            },
+          },
+        });
+      });
+
+      const mainRequest = controller.expectOne(
+        'https://pokeapi.co/api/v2/pokemon/missingNo'
+      );
+      // Answer the request so the Observable emits a value.
+      mainRequest.flush({
+        name: 'missingNo42',
+        species: { name: 'missingNo', url: 'url-missing' },
+      } as Pokemon);
+
+      const secondRequest = controller.expectOne(
+        'https://pokeapi.co/api/v2/pokemon-species/missingNo'
+      );
+      // Answer the request so the Observable emits a value.
+      secondRequest.flush({
+        id: 12,
+        evolution_chain: { url: 'url-evol' },
+      } as PokemonSpecies);
+
+      const thirdRequest = controller.expectOne('url-evol');
+      // Answer the request so the Observable emits a value.
+      thirdRequest.flush({
+        id: 15,
+        chain: { species: { name: 'missingNo' } },
+      } as EvolutionChain);
     });
   });
 });

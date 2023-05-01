@@ -7,5 +7,6 @@ import { PokemonNumberPipe } from './pipes/pokemon-number.pipe';
 @NgModule({
   declarations: [PokedexComponent, PokemonTileComponent, PokemonNumberPipe],
   imports: [CommonModule],
+  exports: [PokemonNumberPipe],
 })
 export class PokedexModule {}
