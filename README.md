@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
 
+## Subject
+The goal is to create a small Pokédex that will list a certain number of Pokémons (at least the first 150) and will allow access to their records. 
+The list should be paginated. 
+The form must give at least the name and type of the selected Pokémon as well as its evolution (if applicable) with a link to its form.
+You are free to add any other information to your Pokédex!
+
+I choose to go with Angular, NgRx (to enable actions and effects on top of the store)... as well as Jest, and implemented so basic style as well to answer to this subject.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -16,7 +24,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via Jest.
 
 ## Running end-to-end tests
 
